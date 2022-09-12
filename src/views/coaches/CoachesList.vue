@@ -1,5 +1,5 @@
 <template>
-	<section><CoachFilter @change-filter="setFilters"></CoachFilter></section>
+	<section><CoachFilter></CoachFilter></section>
 	<section>
 		<BaseCard>
 			<div class="controls">
@@ -27,26 +27,24 @@ import { storeToRefs } from "pinia";
 import { useCouchesStore } from "@/stores/coaches.js";
 import CoachList from "@/components/coaches/CoachList.vue";
 import CoachFilter from "@/components/coaches/CoachFilter.vue";
-import { reactive, ref } from "vue";
+import { provide, ref } from "vue";
 import { computed } from "@vue/reactivity";
 
 const useCouches = useCouchesStore();
 const { coaches, hasCoaches } = storeToRefs(useCouches);
 
-const activeFilters = ref({
+const filters = ref({
 	frontend: true,
 	backend: true,
 	career: true,
 });
+provide("filters", filters);
+
 const filteredCoaches = computed(() =>
 	coaches.value.filter((coach) =>
-		coach.areas.some((area) => activeFilters.value[area])
+		coach.areas.some((area) => filters.value[area])
 	)
 );
-
-function setFilters(filters) {
-	activeFilters.value = filters;
-}
 </script>
 
 <style lang="scss" scoped>

@@ -17,22 +17,13 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { inject } from "vue";
 
-const emit = defineEmits(["change-filter"]);
-
-const filters = reactive({
-	frontend: true,
-	backend: true,
-	career: true,
-});
-
+const filters = inject("filters");
 function setFilter(e) {
 	const inputId = e.target.id;
 	const isActive = e.target.checked;
-	filters[inputId] = isActive;
-	// emit("change-filter", { ...filters });
-	emit("change-filter", filters);
+	filters.value[inputId] = isActive;
 }
 </script>
 
