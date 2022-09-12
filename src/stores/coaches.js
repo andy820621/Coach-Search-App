@@ -8,8 +8,8 @@ export const useCouchesStore = defineStore("coaches", () => {
 			firstName: "Maximilian",
 			lastName: "Schwarzmuller",
 			areas: ["frontend", "backend", "career"],
-			descriotion:
-				"I'm Maximilian and I've worked as a freelance web developer for years.",
+			description:
+				"I'm Maximilian and I've worked as a freelance web developer for years. Let me help you become a developer as well~",
 			hourlyRate: 30,
 		},
 		{
@@ -17,8 +17,8 @@ export const useCouchesStore = defineStore("coaches", () => {
 			firstName: "Julie",
 			lastName: "Jones",
 			areas: ["frontend", "career"],
-			descriotion:
-				"I'm Julie and I've a senior developer in a big tech company, I can help you",
+			description:
+				"I'm Julie and I've a senior developer in a big tech company, I can help you get your first job or progress in your current role.",
 			hourlyRate: 30,
 		},
 	]);
