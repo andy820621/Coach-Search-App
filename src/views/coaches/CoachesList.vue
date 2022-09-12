@@ -4,7 +4,9 @@
 		<BaseCard>
 			<div class="controls">
 				<base-button mode="outline">Refresh</base-button>
-				<base-button link to="/register">Register as Coach</base-button>
+				<base-button link to="/register" v-if="!userIsCoach"
+					>Register as Coach</base-button
+				>
 			</div>
 			<ul v-if="hasCoaches">
 				<CoachList
@@ -31,7 +33,7 @@ import { provide, ref } from "vue";
 import { computed } from "@vue/reactivity";
 
 const useCouches = useCouchesStore();
-const { coaches, hasCoaches } = storeToRefs(useCouches);
+const { coaches, hasCoaches, userIsCoach } = storeToRefs(useCouches);
 
 const filters = ref({
 	frontend: true,

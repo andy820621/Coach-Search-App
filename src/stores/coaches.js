@@ -1,7 +1,8 @@
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useCouchesStore = defineStore("coaches", () => {
+	// state
 	const coaches = reactive([
 		{
 			id: "c1",
@@ -22,8 +23,23 @@ export const useCouchesStore = defineStore("coaches", () => {
 			hourlyRate: 30,
 		},
 	]);
+	const userId = ref("c3");
 
+	// Computed || getters
 	const hasCoaches = computed(() => coaches && coaches.length > 0);
+	const userIsCoach = computed(() =>
+		coaches.some((coach) => coach.id === userId.value)
+	);
 
-	return { coaches, hasCoaches };
+	// Methed || actions
+	function registerCoach(data) {
+		const coach = {
+			id: `c${parseInt(coaches.length) + 1}`,
+			...data,
+		};
+		// console.log(coach);
+		coaches.push(coach);
+	}
+
+	return { coaches, hasCoaches, userIsCoach, registerCoach };
 });
