@@ -76,12 +76,8 @@ function submitHandler() {
 	if (!allValid) return;
 
 	const coachId = route.params.id; // get id from /coaches/:id/contact
-	const newRequest = {
-		coachId,
-		...data,
-	};
 
-	useRequests.addRequest(newRequest);
+	useRequests.addRequest(data, coachId);
 	router.replace("/coaches");
 }
 

@@ -21,7 +21,6 @@ header {
 	justify-content: center;
 	align-items: center;
 	a {
-		text-decoration: none;
 		color: #f391e3;
 		display: inline-block;
 		padding: 0.75rem 1.5rem;
