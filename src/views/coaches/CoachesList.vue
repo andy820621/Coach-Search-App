@@ -1,43 +1,45 @@
 <template>
-	<section><CoachFilter></CoachFilter></section>
-	<section>
-		<BaseCard>
-			<div class="controls">
-				<base-button mode="outline" @click="refreshCoaches(true)"
-					>Refresh</base-button
-				>
-				<base-button link to="/register" v-if="!userIsCoach && !isLoading"
-					>Register as Coach</base-button
-				>
-			</div>
+	<div>
+		<section><CoachFilter></CoachFilter></section>
+		<section>
+			<BaseCard>
+				<div class="controls">
+					<base-button mode="outline" @click="refreshCoaches(true)"
+						>Refresh</base-button
+					>
+					<base-button link to="/register" v-if="!userIsCoach && !isLoading"
+						>Register as Coach</base-button
+					>
+				</div>
 
-			<div v-if="isLoading">
-				<BaseLoader />
-			</div>
+				<div v-if="isLoading">
+					<BaseLoader />
+				</div>
 
-			<ul v-else-if="hasCoaches && !isLoading">
-				<CoachList
-					v-for="coach in filteredCoaches"
-					:id="coach.id"
-					:firstName="coach.firstName"
-					:lastName="coach.lastName"
-					:rate="coach.hourlyRate"
-					:areas="coach.areas"
-					:key="coach.id"
-				/>
-			</ul>
+				<ul v-else-if="hasCoaches && !isLoading">
+					<CoachList
+						v-for="coach in filteredCoaches"
+						:id="coach.id"
+						:firstName="coach.firstName"
+						:lastName="coach.lastName"
+						:rate="coach.hourlyRate"
+						:areas="coach.areas"
+						:key="coach.id"
+					/>
+				</ul>
 
-			<h3 v-else>No coaches found.</h3>
-		</BaseCard>
-	</section>
+				<h3 v-else>No coaches found.</h3>
+			</BaseCard>
+		</section>
 
-	<BaseDialog
-		:show="!!fetchError"
-		title="An Error Occured!"
-		@close="dialogHandler"
-	>
-		<p>{{ fetchError }}</p>
-	</BaseDialog>
+		<BaseDialog
+			:show="!!fetchError"
+			title="An Error Occured!"
+			@close="dialogHandler"
+		>
+			<p>{{ fetchError }}</p>
+		</BaseDialog>
+	</div>
 </template>
 
 <script setup>

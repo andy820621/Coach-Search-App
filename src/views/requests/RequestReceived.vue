@@ -1,31 +1,33 @@
 <template>
-	<section>
-		<BaseCard>
-			<header>
-				<h2>Requests Received</h2>
-			</header>
+	<div>
+		<section>
+			<BaseCard>
+				<header>
+					<h2>Requests Received</h2>
+				</header>
 
-			<BaseLoader v-if="isLoading" />
+				<BaseLoader v-if="isLoading" />
 
-			<ul v-else-if="hasRequests && !isLoading">
-				<RequestList
-					v-for="request in requests"
-					:email="request.email"
-					:message="request.message"
-					:key="request.id"
-				/>
-			</ul>
-			<h3 v-else>You haven't receiced any requests yet!</h3>
-		</BaseCard>
-	</section>
+				<ul v-else-if="hasRequests && !isLoading">
+					<RequestList
+						v-for="request in requests"
+						:email="request.email"
+						:message="request.message"
+						:key="request.id"
+					/>
+				</ul>
+				<h3 v-else>You haven't receiced any requests yet!</h3>
+			</BaseCard>
+		</section>
 
-	<BaseDialog
-		:show="!!fetchError"
-		title="An Error Occured!"
-		@close="dialogHandler"
-	>
-		<p>{{ fetchError }}</p>
-	</BaseDialog>
+		<BaseDialog
+			:show="!!fetchError"
+			title="An Error Occured!"
+			@close="dialogHandler"
+		>
+			<p>{{ fetchError }}</p>
+		</BaseDialog>
+	</div>
 </template>
 
 <script setup>
