@@ -1,5 +1,21 @@
 <script setup>
 import TheHeader from "./components/layout/TheHeader.vue";
+import { useAuthStore } from "@/stores/auth.js";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+import { watch } from "vue";
+const useAuth = useAuthStore();
+const router = useRouter();
+const { isLogout } = storeToRefs(useAuth);
+
+useAuth.checkLogin();
+
+watch(
+	() => isLogout.value,
+	(newValue, oldValue) => {
+		if (newValue && newValue !== oldValue) router.replace("/coaches");
+	}
+);
 </script>
 
 <template>

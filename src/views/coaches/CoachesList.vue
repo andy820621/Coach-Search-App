@@ -4,11 +4,17 @@
 		<section>
 			<BaseCard>
 				<div class="controls">
-					<base-button mode="outline" @click="refreshCoaches(true)"
-						>Refresh</base-button
+					<BaseButton mode="outline" @click="refreshCoaches(true)"
+						>Refresh</BaseButton
 					>
-					<base-button link to="/register" v-if="!userIsCoach && !isLoading"
-						>Register as Coach</base-button
+					<BaseButton link to="/auth?redirect=register" v-if="!isAuthenticated"
+						>Login to Register as Coach</BaseButton
+					>
+					<BaseButton
+						link
+						to="/register"
+						v-if="isAuthenticated && !userIsCoach && !isLoading"
+						>Register as Coach</BaseButton
 					>
 				</div>
 
@@ -45,11 +51,14 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useCouchesStore } from "@/stores/coaches.js";
+import { useAuthStore } from "@/stores/auth.js";
 import CoachList from "@/components/coaches/CoachList.vue";
 import CoachFilter from "@/components/coaches/CoachFilter.vue";
 import { provide, ref } from "vue";
 import { computed } from "@vue/reactivity";
 
+const useAuth = useAuthStore();
+const { isAuthenticated } = storeToRefs(useAuth);
 const useCouches = useCouchesStore();
 const { coaches, hasCoaches, userIsCoach } = storeToRefs(useCouches);
 
@@ -88,7 +97,7 @@ function dialogHandler() {
 .controls {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 2.4rem;
+	margin-block: 1rem 2.4rem;
 }
 h3 {
 	text-align: center;

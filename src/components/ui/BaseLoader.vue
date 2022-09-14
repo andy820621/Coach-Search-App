@@ -37,7 +37,7 @@
 	width: 6px;
 	height: 18px;
 	border-radius: 20%;
-	background: #aaa;
+	background: #3d008d;
 }
 .lds-spinner div:nth-child(1) {
 	transform: rotate(0deg);

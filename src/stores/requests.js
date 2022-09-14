@@ -1,12 +1,14 @@
-import { ref, computed, reactive } from "vue";
-import { defineStore } from "pinia";
-import { useCouchesStore } from "@/stores/coaches.js";
+import { computed, reactive } from "vue";
+import { defineStore, storeToRefs } from "pinia";
+import { useAuthStore } from "@/stores/auth.js";
 
 export const useRequestsStore = defineStore("requests", () => {
+	//from other stores
+	const useAuth = useAuthStore();
+	const { token, userId } = storeToRefs(useAuth);
+
 	// state
 	const requests = reactive([]);
-	const useCoaches = useCouchesStore();
-	const userNow = useCoaches.userId;
 
 	//computed
 	const hasRequests = computed(
@@ -36,7 +38,7 @@ export const useRequestsStore = defineStore("requests", () => {
 
 	async function fetchRequests() {
 		const response = await fetch(
-			`https://vue-findcoaches-data-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${userNow}.json`
+			`https://vue-findcoaches-data-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${userId.value}.json?auth=${token.value}`
 		);
 		const responseData = await response.json();
 
@@ -49,7 +51,7 @@ export const useRequestsStore = defineStore("requests", () => {
 		for (let key in responseData) {
 			const request = {
 				id: key,
-				coachId: userNow,
+				coachId: userId,
 				email: responseData[key].email,
 				message: responseData[key].message,
 			};

@@ -1,7 +1,11 @@
 import { computed, reactive, ref } from "vue";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
+import { useAuthStore } from "@/stores/auth.js";
 
 export const useCouchesStore = defineStore("coaches", () => {
+	// from other stores
+	const useAuth = useAuthStore();
+	const { token, userId } = storeToRefs(useAuth);
 	// state
 	const coaches = reactive([
 		// {
@@ -23,7 +27,6 @@ export const useCouchesStore = defineStore("coaches", () => {
 		// 	hourlyRate: 30,
 		// },
 	]);
-	const userId = ref("c3");
 	const lastFetch = ref(null);
 
 	// Computed || getters
@@ -45,7 +48,7 @@ export const useCouchesStore = defineStore("coaches", () => {
 		};
 
 		const response = await fetch(
-			`https://vue-findcoaches-data-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${userId.value}.json`,
+			`https://vue-findcoaches-data-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${userId.value}.json?auth=${token.value}`,
 			{
 				method: "PUT",
 				body: JSON.stringify(coach),

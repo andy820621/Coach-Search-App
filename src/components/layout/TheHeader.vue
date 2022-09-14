@@ -4,13 +4,30 @@
 			<h1><router-link to="/">Find a Coach</router-link></h1>
 			<ul>
 				<li><router-link to="/coaches">All Coaches</router-link></li>
-				<li><router-link to="/requests">Requests</router-link></li>
+				<li v-if="isAuthenticated">
+					<router-link to="/requests">Requests</router-link>
+				</li>
+				<li v-else><router-link to="/auth">Login</router-link></li>
+				<li v-if="isAuthenticated">
+					<BaseButton @click="logoutHandler">Logout</BaseButton>
+				</li>
 			</ul>
 		</nav>
 	</header>
 </template>
 
-<script setup></script>
+<script setup>
+import { storeToRefs } from "pinia";
+import { useAuthStore } from "@/stores/auth.js";
+import { useRouter } from "vue-router";
+const useAuth = useAuthStore();
+const router = useRouter();
+const { isAuthenticated } = storeToRefs(useAuth);
+function logoutHandler() {
+	useAuth.logout();
+	router.replace("/coaches");
+}
+</script>
 
 <style lang="scss" scoped>
 header {

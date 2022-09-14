@@ -10,7 +10,7 @@
 				placeholder="Enter your email address"
 				required
 				ref="emailInput"
-				v-model="data.email"
+				v-model.trim="data.email"
 			/>
 			<span class="msg showError">InValid Email (Click to see more rules)</span>
 		</div>
@@ -21,7 +21,7 @@
 				rows="5"
 				required
 				ref="messageInput"
-				v-model="data.message"
+				v-model.trim="data.message"
 				placeholder="Type somthing..."
 			></textarea>
 			<span class="msg showError"
