@@ -8,7 +8,7 @@ export const useAuthStore = defineStore("auth", () => {
 	const token = ref(null);
 	const userId = ref(null);
 	const isLogout = ref(false);
-	const API_KEY = "AIzaSyA7guzOdD7-EiymMaEUC8Q-bWarvbRtifQ";
+	const API_KEY = import.meta.env.VITE_API_KEY;
 
 	//computed
 	const isAuthenticated = computed(() => !!token.value);
