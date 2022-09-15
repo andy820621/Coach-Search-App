@@ -25,32 +25,9 @@
 </template>
 
 <script setup>
-import { useCouchesStore } from "@/stores/coaches.js";
-import { computed, onMounted, watch, ref } from "vue";
-import { useRoute } from "vue-router";
+import useGetCoach from "@/utils/useGetCoach.js";
 
-const useCouches = useCouchesStore();
-const route = useRoute();
-
-const id = route.params.id;
-const coach = ref(null);
-coach.value = useCouches.coaches.find((coach) => coach.id === id);
-
-onMounted(() => {
-	// console.log(`CoachDetail mounted!!`);
-
-	setTimeout(() => {
-		coach.value = useCouches.coaches.find((coach) => coach.id === id);
-	}, 300);
-});
-
-const firstName = computed(() => coach.value?.firstName);
-const lastName = computed(() => coach.value?.lastName);
-const hourlyRate = computed(() => coach.value?.hourlyRate);
-const areas = computed(() => coach.value?.areas);
-const description = computed(() => coach.value?.description);
-const fullName = computed(() => firstName.value + " " + lastName.value);
-const contactLink = computed(() => `${route.matched[0].path}/contact`);
+const { hourlyRate, areas, description, fullName, contactLink } = useGetCoach();
 </script>
 
 <style lang="scss" scoped></style>
