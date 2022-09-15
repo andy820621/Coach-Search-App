@@ -32,11 +32,11 @@ import { useRoute } from "vue-router";
 const useCouches = useCouchesStore();
 const route = useRoute();
 
-const props = defineProps(["id"]);
-const coach = useCouches.coaches.find((coach) => coach.id === props.id);
+const id = route.params.id;
+const coach = useCouches.coaches.find((coach) => coach.id === id);
 
 const fullName = computed(() => coach.firstName + " " + coach.lastName);
-const contactLink = computed(() => `${route.path}/contact`);
+const contactLink = computed(() => `${route.matched[0].path}/contact`);
 </script>
 
 <style lang="scss" scoped></style>

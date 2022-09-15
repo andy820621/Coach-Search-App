@@ -24,8 +24,10 @@ const props = defineProps(["id", "firstName", "lastName", "rate", "areas"]);
 
 const fullName = computed(() => props.firstName + " " + props.lastName);
 
-const contactLink = computed(() => `${route.path}/${props.id}/contact`);
-const detailLink = computed(() => `${route.path}/${props.id}`);
+const contactLink = computed(
+	() => `${route.matched[0].path}/${props.id}/contact`
+);
+const detailLink = computed(() => `${route.matched[0].path}/${props.id}`);
 </script>
 
 <style lang="scss" scoped>
