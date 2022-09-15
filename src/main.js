@@ -7,8 +7,9 @@ import router from "./router";
 import BaseCard from "./components/ui/BaseCard.vue";
 
 const app = createApp(App);
+const pinia = createPinia();
 
-app.use(createPinia());
+app.use(pinia);
 app.use(router);
 
 // Avoid UserAuth refs can't get dom elements because dynamically import BaseCard component.

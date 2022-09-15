@@ -76,6 +76,8 @@ export const useCouchesStore = defineStore("coaches", () => {
 		Object.assign(coaches, results);
 
 		setFetchTimestamp();
+
+		return responseData;
 	}
 	fetchCoaches();
 

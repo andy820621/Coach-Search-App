@@ -1,14 +1,20 @@
 <script setup>
 import TheHeader from "./components/layout/TheHeader.vue";
 import { useAuthStore } from "@/stores/auth.js";
+import { useCouchesStore } from "@/stores/coaches.js";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import { watch } from "vue";
+import { onMounted, watch } from "vue";
 const useAuth = useAuthStore();
+const useCouches = useCouchesStore();
 const router = useRouter();
 const { isLogout } = storeToRefs(useAuth);
 
 useAuth.checkLogin();
+useCouches.fetchCoaches();
+// onMounted(() => {
+// 	console.log(`App mounted!!`);
+// });
 
 watch(
 	() => isLogout.value,
