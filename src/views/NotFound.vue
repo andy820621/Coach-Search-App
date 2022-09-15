@@ -10,10 +10,6 @@
 	</section>
 </template>
 
-<script setup>
-import BaseCard from "../components/ui/BaseCard.vue";
-</script>
-
 <style lang="scss" scoped>
 a {
 	font-size: 1.3rem;
