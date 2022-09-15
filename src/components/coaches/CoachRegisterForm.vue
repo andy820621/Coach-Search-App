@@ -96,21 +96,21 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import useFormSubmit from "@/utils/useFormSubmit";
+import { ref, onMounted } from "vue";
 import { useCouchesStore } from "@/stores/coaches.js";
 import { useRouter } from "vue-router";
 const useCouches = useCouchesStore();
 const router = useRouter();
 
-const initialData = () => ({
-	firstName: "",
-	lastName: "",
-	description: "",
-	hourlyRate: null,
-	areas: [],
-});
-
-const data = reactive(initialData());
+const { initialData, data, toggleInValidClass, addShakeAnimation } =
+	useFormSubmit({
+		firstName: "",
+		lastName: "",
+		description: "",
+		hourlyRate: null,
+		areas: [],
+	});
 
 const firstNameInput = ref(null);
 const lastNameInput = ref(null);
@@ -152,19 +152,9 @@ function submitHandler() {
 	router.replace("/coaches"); // redirect to coachesList page
 }
 
-function toggleInValidClass(input) {
-	input.parentElement.classList.toggle("invalid", !input.checkValidity());
-	input.parentElement.classList.toggle("valid", input.checkValidity());
-}
 function checkboxHandler() {
 	checkbox.value.classList.toggle("invalid", data.areas.length === 0);
 	checkbox.value.classList.toggle("valid", data.areas.length !== 0);
-}
-function addShakeAnimation(target) {
-	target.classList.add("shake");
-	target.addEventListener("animationend", (e) =>
-		e.target.classList.remove("shake")
-	);
 }
 </script>
 

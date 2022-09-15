@@ -36,19 +36,18 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import useFormSubmit from "@/utils/useFormSubmit";
+import { ref, onMounted } from "vue";
 import { useRequestsStore } from "@/stores/requests.js";
 import { useRoute, useRouter } from "vue-router";
 const useRequests = useRequestsStore();
 const route = useRoute();
 const router = useRouter();
 
-const initialData = () => ({
+const { data, toggleInValidClass, addShakeAnimation } = useFormSubmit({
 	email: "",
 	message: "",
 });
-
-const data = reactive(initialData());
 
 const emailInput = ref(null);
 const messageInput = ref(null);
@@ -79,17 +78,6 @@ function submitHandler() {
 
 	useRequests.addRequest(data, coachId);
 	router.replace("/coaches");
-}
-
-function toggleInValidClass(input) {
-	input.parentElement.classList.toggle("invalid", !input.checkValidity());
-	input.parentElement.classList.toggle("valid", input.checkValidity());
-}
-function addShakeAnimation(target) {
-	target.classList.add("shake");
-	target.addEventListener("animationend", (e) =>
-		e.target.classList.remove("shake")
-	);
 }
 </script>
 

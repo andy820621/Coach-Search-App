@@ -50,7 +50,7 @@
 				</div>
 
 				<div class="button-container">
-					<BaseButton @click.prevent="clickHandler">{{
+					<BaseButton @click.prevent="submitHandler">{{
 						submitButtonCaption
 					}}</BaseButton>
 					<BaseButton
@@ -66,19 +66,21 @@
 </template>
 
 <script setup>
+import useFormSubmit from "@/utils/useFormSubmit";
 import { computed } from "@vue/reactivity";
 import { reactive, ref, onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth.js";
+import { useCouchesStore } from "@/stores/coaches.js";
 import { useRoute, useRouter } from "vue-router";
 const useAuth = useAuthStore();
+const useCouches = useCouchesStore();
 const route = useRoute();
 const router = useRouter();
 
-const initialData = () => ({
+const { data, toggleInValidClass, addShakeAnimation } = useFormSubmit({
 	email: "",
 	password: "",
 });
-const data = reactive(initialData());
 
 const emailInput = ref(null);
 const passwordInput = ref(null);
@@ -105,7 +107,7 @@ onMounted(() => {
 	});
 });
 
-async function clickHandler() {
+async function submitHandler() {
 	const allValid = inputs.every((input) => input.reportValidity());
 	inputs.forEach((input) => {
 		toggleInValidClass(input);
@@ -125,10 +127,10 @@ async function clickHandler() {
 			await useAuth.signup(data);
 		}
 		// Redirect
-		if (useAuth.userIsCoach) {
-			router.replace(redirectUrl);
+		const redirectUrl = `/${route.query.redirect || "coaches"}`;
+		if (useCouches.userIsCoach) {
+			router.replace("coaches");
 		} else {
-			const redirectUrl = `/${route.query.redirect || "coaches"}`;
 			router.replace(redirectUrl);
 		}
 	} catch (err) {
@@ -137,17 +139,6 @@ async function clickHandler() {
 	}
 
 	isLoading.value = false;
-}
-
-function toggleInValidClass(input) {
-	input.parentElement.classList.toggle("invalid", !input.checkValidity());
-	input.parentElement.classList.toggle("valid", input.checkValidity());
-}
-function addShakeAnimation(target) {
-	target.classList.add("shake");
-	target.addEventListener("animationend", (e) =>
-		e.target.classList.remove("shake")
-	);
 }
 
 function switchAuthMode() {
