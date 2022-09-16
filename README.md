@@ -4,7 +4,7 @@ Use Vue3 to build this Website, and use Firebase as database, and use Vite as bu
 
 <img src="./cover.webp" target="_blank">
 
-#### Go to see the [Demo](https://course-register-app.vercel.app).
+#### Go to see the [Demo](https://coach-search-app.vercel.app).
 
 ## Project Setup
 
