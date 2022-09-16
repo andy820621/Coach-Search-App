@@ -1,14 +1,10 @@
 # Coach-Search-App
 
-This template should help get you started developing with Vue 3 in Vite.
+Use Vue3 to build this Website, and use Firebase as database, and use Vite as build tool.
 
-## Recommended IDE Setup
+<img src="./cover.webp" target="_blank">
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+#### Go to see the [Demo](https://course-register-app.vercel.app).
 
 ## Project Setup
 
