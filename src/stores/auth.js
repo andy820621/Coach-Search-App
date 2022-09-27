@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
 let expirationTimer;
@@ -47,7 +47,7 @@ export const useAuthStore = defineStore("auth", () => {
 			);
 		}
 		const expiresIn = +responseData.expiresIn * 1000;
-		const expirationDate = new Date().getTime + expiresIn;
+		const expirationDate = new Date().getTime() + expiresIn;
 
 		localStorage.setItem("token", responseData.idToken);
 		localStorage.setItem("userId", responseData.localId);

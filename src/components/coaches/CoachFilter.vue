@@ -1,6 +1,6 @@
 <template>
 	<BaseCard>
-		<h2>Find Your Coach</h2>
+		<h2>Select the tags to find the coach</h2>
 		<span class="filter-option">
 			<input type="checkbox" id="frontend" checked @change="setFilter" />
 			<label for="frontend">Frontend</label>

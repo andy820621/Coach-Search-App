@@ -19,6 +19,13 @@ const text = computed(() => props.type.toUpperCase());
 	padding: 0.5rem 1.5rem;
 	display: inline-block;
 	margin-right: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+	.badge {
+		font-size: 0.95rem;
+		padding: 0.4rem 01rem;
+	}
 }
 .frontend {
 	background-color: #3d008d;

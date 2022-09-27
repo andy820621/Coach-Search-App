@@ -2,7 +2,7 @@
 	<li>
 		<h3>{{ fullName }}</h3>
 		<h4>${{ rate }}/hour</h4>
-		<div>
+		<div class="bageContainer">
 			<BaseBadge v-for="area in areas" :key="area" :type="area">{{
 				area
 			}}</BaseBadge>
@@ -45,8 +45,17 @@ h3,
 h4 {
 	margin: 0.5rem 0;
 }
+.bageContainer {
+	margin-top: 1rem;
+}
 .actions {
 	display: flex;
 	justify-content: flex-end;
+	margin-top: 2.4rem;
+}
+@media (min-width: 768px) {
+	.actions {
+		margin-top: 2rem;
+	}
 }
 </style>

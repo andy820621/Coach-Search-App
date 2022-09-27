@@ -11,9 +11,7 @@ export const useRequestsStore = defineStore("requests", () => {
 	const requests = reactive([]);
 
 	//computed
-	const hasRequests = computed(
-		() => requests.value && requests.value.length > 0
-	);
+	const hasRequests = computed(() => requests && requests.length > 0);
 
 	// Method
 	async function addRequest(request, coachId) {
