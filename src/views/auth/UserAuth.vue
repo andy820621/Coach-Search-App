@@ -248,6 +248,14 @@ input {
 	margin-top: 2.4rem;
 	display: flex;
 	justify-content: flex-end;
+	@media (max-width: 500px) {
+		flex-direction: column;
+		gap: 0.8rem;
+		button,
+		a {
+			margin: 0;
+		}
+	}
 	.flat {
 		border: 1px solid #3d008d;
 		&:hover {

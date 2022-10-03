@@ -57,6 +57,10 @@ function clickHandler() {
 dialog {
 	position: fixed;
 	top: 20vh;
+	@media (max-width: 768px) {
+		left: 50%;
+		transform: translateX(-50%);
+	}
 	width: 80%;
 	z-index: 99;
 	border-radius: 12px;

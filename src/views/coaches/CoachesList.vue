@@ -98,6 +98,18 @@ function dialogHandler() {
 	display: flex;
 	justify-content: space-between;
 	margin-block: 1rem 2.4rem;
+	@media (max-width: 500px) {
+		flex-direction: column;
+		gap: 1rem;
+		margin: 0 auto;
+		padding: 0 1rem;
+
+		button,
+		a {
+			margin: 0;
+			text-align: center;
+		}
+	}
 }
 h3 {
 	text-align: center;

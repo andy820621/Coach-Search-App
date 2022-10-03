@@ -37,11 +37,19 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	@media (max-width: 500px) {
+		height: auto;
+		padding-bottom: 1rem;
+	}
+
 	a {
 		color: #f391e3;
 		display: inline-block;
 		padding: 0.75rem 1.5rem;
 		border: 1px solid transparent;
+		@media (max-width: 500px) {
+			padding: 0.6rem 1rem;
+		}
 	}
 
 	nav {
@@ -50,6 +58,9 @@ header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		@media (max-width: 500px) {
+			flex-direction: column;
+		}
 	}
 	ul {
 		display: flex;

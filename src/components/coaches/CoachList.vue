@@ -53,9 +53,20 @@ h4 {
 	justify-content: flex-end;
 	margin-top: 2.4rem;
 }
-@media (min-width: 768px) {
+@media (max-width: 500px) {
+	li {
+		text-align: center;
+	}
 	.actions {
-		margin-top: 2rem;
+		display: grid;
+		justify-content: center;
+		gap: 1rem;
+		button,
+		a {
+			margin: 0;
+			text-align: center;
+			min-width: 50vw !important;
+		}
 	}
 }
 </style>

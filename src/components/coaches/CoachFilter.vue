@@ -31,6 +31,11 @@ function setFilter(e) {
 h2 {
 	margin: 0.5rem 0;
 }
+@media (max-width: 500px) {
+	h2 {
+		text-align: center;
+	}
+}
 .filter-option {
 	margin-right: 1rem;
 
